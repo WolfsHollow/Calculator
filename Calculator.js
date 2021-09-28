@@ -99,6 +99,8 @@ function clearAll(){
     previousValue = '';
     number1 = null;
     number2 = null;
+    previousDiv.textContent = '';
+    inputDiv.textContent = '';
 }
 
 function operate(a,b,operator){
@@ -158,7 +160,7 @@ function processOperator(operator){
             displayNum = deletedNum.toString();
         }
         else if (operator == 'clear'){
-            clearAll();
+            clearAll();            
         }
     }
     
