@@ -12,7 +12,6 @@ const mulitplyButton = document.querySelector('#multiply');
 const divideButton = document.querySelector('#divide');
 const addButton = document.querySelector('#add');
 const subtractButton = document.querySelector('#subtract');
-const deleteButton = document.querySelector('#delete');
 const equalsButton = document.querySelector('#equals');
 const decimalButton = document.querySelector('#decimal');
 const oneButton = document.querySelector('#one');
@@ -30,7 +29,10 @@ const inputDisplay = document.querySelector('#input');
 const previousDisplay = document.querySelector('#previous');
 
 const buttons = document.getElementsByClassName('btn');
-buttons.addEventListener('click', storeValue);
+for (i = 0; i < buttons.length; i++){
+    buttons[i].addEventListener('click', storeValue);
+}
+
 
 let displayValue = '';
 let previousValue = '';
@@ -49,6 +51,7 @@ function storeValue(event){
     if (numberBool){
         eventvalue = eventValue.toString();
         displayValue += eventValue;
+        inputDiv.textContent = displayValue;
         number1 = Number(displayValue);
     }
     else {
@@ -142,10 +145,13 @@ function getOperator(operator){
 }
 
 function processOperator(operator){
+    if (number1 == null){
+        return;
+    }
     if (operator == 'inverse' || operator == 'delete' || operator == 'clear'){
         if (operator == 'inverse'){
             let inversedNum = inverse(number1);
-            displayNum = inversedNumb.toString();
+            displayNum = inversedNum.toString();
         }
         else if (operator == 'delete'){
             let deletedNum = deleteLast(number1);
@@ -161,6 +167,7 @@ function processOperator(operator){
     if (number2 == null){
         number2 = number1;
         previousDisplayStr = displayValue+operation;
+        previousDiv.textContent = previousDisplayStr;
     }
     else{
         number1 = operate(number1, number2, operator)
