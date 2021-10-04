@@ -1,4 +1,4 @@
-//Initialize variables and set up DOM
+//#region Initialize variables and set up DOM
 const pageContainer = document.querySelector('#page');
 const calculatorContainer = document.querySelector('#calculatorContainer');
 const displayContainer = document.querySelector('#display');
@@ -27,12 +27,12 @@ const zeroButton = document.querySelector('#zero');
 const inverseButton = document.querySelector('#inverse');
 const inputDisplay = document.querySelector('#input');
 const previousDisplay = document.querySelector('#previous');
+//#endregion
 
 const buttons = document.getElementsByClassName('btn');
 for (i = 0; i < buttons.length; i++){
     buttons[i].addEventListener('click', storeValue);
 }
-
 
 let displayValue = '';
 let previousValue = '';
@@ -41,12 +41,12 @@ let number2 = null;
 let operation1 = null;
 let operation2 = null;
 
-function getValue(event){
+function getValue(event){ //gets button value
     const pressedButton = event.target;
     return pressedButton.value;
 }
 
-function storeValue(event){
+function storeValue(event){ //processes the value
     let eventValue = getValue(event);
     let numberBool = eventValue >= 0;
     if (numberBool){
@@ -60,14 +60,14 @@ function storeValue(event){
     }
 }
 
-
-function add(a,b){
+//#region Operations
+function add(a,b){ 
     console.log(`adding ${a} and ${b}`)
     return a+b;
 }
 
 function subtract(a,b){
-    return a-b;
+    return b-a;
 }
 
 function multiply(a,b){
@@ -75,28 +75,28 @@ function multiply(a,b){
 }
 
 function divide(a,b){
-    if (b == 0){
+    if (a == 0){
         return `Be more responsible`;
     }
-    return a/b;
+    return b/a;
 }
 
 function exponent(a,b){
     return a**b;
 }
 
-function inverse(a){
+function inverse(a){ //gives inverse
     return a*-1;
 }
 
-function deleteLast(a){
+function deleteLast(a){ //deletes last inputted number
     a = a.toString();
     a = a.slice(0,-1);
     a = Number(a);
     return a;
 }
 
-function clearAll(){
+function clearAll(){ // resets everything
     displayValue = '';
     previousValue = '';
     number1 = null;
@@ -105,7 +105,9 @@ function clearAll(){
     inputDiv.textContent = '';
 }
 
-function operate(a,b,operator){
+//#endregion
+
+function operate(a,b,operator){ //gets the operated value
     console.log(`number1: ${a}, number2: ${b}, operator: ${operator}`);
     switch (operator){
         case '+':
@@ -121,7 +123,7 @@ function operate(a,b,operator){
     }
 }
 
-function getOperator(operator){
+function getOperator(operator){ // gets the operator to put on display
     console.log(operator);
     switch (operator){
         case "add":
@@ -143,9 +145,23 @@ function getOperator(operator){
     console.log('we didnt break');
 }
 
-function processOperator(operator){
-    if (number1 == null && number2 == null){
-        return;
+function processOperator(operator){ //processes an operator pressed
+
+    // if num1 does not exist
+    if (number1 == null){
+        if (number2 == null){ // do nothing if no other numbers pressed
+            return;
+        }
+        //change operator to selected operator
+        else if (operator == 'add' || operator == 'multiply' || operator == 'divide' || operator == 'subtract'){
+            previousDisplayStr = previousDisplayStr.slice(0,previousDisplayStr.length-1)
+            operation1 = getOperator(operator);
+            previousDisplayStr += ` ${operation1}`; 
+            previousDiv.textContent = previousDisplayStr;
+            displayValue = '';
+            return;
+        }
+        
     }
     if (operator == 'inverse' || operator == 'delete' || operator == 'clear' || operator == 'equals'){
         switch (operator){
@@ -168,6 +184,8 @@ function processOperator(operator){
                 previousDisplayStr += ` ${number1} =`;
                 previousDiv.textContent = previousDisplayStr;
                 number2 = operate(number1,number2,operation1);
+                previousDisplayStr = `${number2} `;
+                operation2 = null;
                 displayValue = number2;
                 number1 = null;
                 inputDiv.textContent = displayValue; 
@@ -178,10 +196,15 @@ function processOperator(operator){
     if (operation1 != null && number2 != null){
         operation2 = operation1;
         console.log(`operation ${operation1} of ${number1} and ${number2} is`);
+        
         number1 = operate(number1, number2, operation1);
         console.log(number1);
         inputDiv.textContent = number1;
-        previousDiv.textContent = number1+operation2;  
+        previousDiv.textContent = `${number1} ${operation2}`;  
+        number2 = number1;
+        number1 = null;
+        operation1 = null;
+        displayValue = '';
     }
 
     operation1 = getOperator(operator);    
