@@ -130,7 +130,7 @@ function divide(a,b){
 }
 
 function exponent(a,b){
-    return a**b;
+    return b**a;
 }
 
 function inverse(a){ //gives inverse
