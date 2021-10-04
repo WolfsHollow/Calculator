@@ -1,9 +1,10 @@
 #page {  
     display: flex;
+    background: rgb(0, 0, 0);
+    background-image: url('/img/double-bubble-dark.png');
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    background: rgb(10, 51, 70);
 }
 
 #calculatorContainer {
@@ -13,8 +14,15 @@
     gap: 20px;
     flex-wrap: wrap;
     flex-flow: column;
-    background-image: url('/img/skulls.png');
+    background-image: 
+        linear-gradient(
+            rgba(39, 7, 82, 0.315),
+            rgba(122, 18, 219, 0.3)),
+            url('/img/skulls.png');
     background-color: green;    
+    border-style: solid;
+    border-color: rgb(59, 57, 57, 0.1);
+    border-width: 10px;
     height: 800px;
     width: 50%;
     min-width: 400px;
@@ -23,43 +31,48 @@
 
     #display {
         display: flex;
-        background-color: white;
+        background-image: url('/img/circles-light.png');
         flex-wrap: wrap;
         flex-flow: column;
         height: 20%;
         width: 95%;
         margin-top: 20px;
+        border-style: solid;
+        border-color: rgb(154, 153, 155,0.5);
     }
 
         #input {
-            background-color:white;
             height: 60%;
+            width: 100%;
             color: black;
             font-size: 70px;
             text-align: right;
             margin-right: 5px;
             font-style: bold;
+            word-break: break-all;
+            /*white-space: nowrap;*/
             word-wrap: break-word;
+            overflow: scroll;
+            overflow-wrap: break-word;
+            text-overflow: ellipsis;
         }
         #previous {
-            background-color: white;
             text-align: right;
             font-size: 30px;
             height: 40%;
             margin-right: 5px;
             color: grey;
-            word-wrap: break-word;
         }
 
 
     #buttonContainer {
-        flex: display;
-        align-items: center;
-        justify-content: center;        
+        display: flex;           
+        flex-flow: row;    
         flex-wrap: wrap;
-        flex-flow: row;
+        align-items: center;
+        justify-content: center; 
         height: 80%;
-        width: 95%;
+        width: 100%;
         border-radius: 20px;
         margin-bottom: 20px;
     }
@@ -67,9 +80,14 @@
         .btn {
             font-size: 50px;
             color:white;
-            background: url('/img/blackmamba.png');
+            background-image: 
+                linear-gradient(
+                    rgba(146, 35, 250, 0.1),
+                    rgba(146, 35, 250, 0.1)),
+                    url('/img/blackmamba.png');
             background-color: skyblue;
             height: 20%;
+            min-width: 80px;
             width: 24%;
             border-radius: 20px;
         }
@@ -78,10 +96,9 @@
             background-image: 
                 linear-gradient(
                     rgba(0, 0, 0, 0.3),
-                    rgba(175, 175, 175, 0.3)),
+                    rgba(18, 2, 36, 0.3)),
                     url('/img/blackmamba.png');
-            height: 21%;
-            width: 24%;
+            transform: scale(1.1);
         }
 
 

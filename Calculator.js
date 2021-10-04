@@ -52,6 +52,9 @@ function keyboardInputs(e){
                 keyPressed = 'delete';
                 console.log(`enter, ${keyPressed}`);
                 break;
+            case 'Escape':
+                keyPressed = 'clear';
+                break;
         }
     }
     storeValue(keyPressed);
@@ -168,9 +171,7 @@ function operate(a,b,operator){ //gets the operated value
 function checkLength(number){// makes sure it'll fit on screen
     numLength = number.toString().length;
     console.log(`numlength of ${number} is ${numLength}`);
-    if (numLength > 10){
-        return Number.parseFloat(number).toExponential(7);
-    }
+
     return number;
 }
 
@@ -228,9 +229,9 @@ function processOperator(operator){ //processes an operator pressed
                     previousDisplayStr += ` ${number1} =`;
                     previousDiv.textContent = previousDisplayStr;
                     number2 = operate(number1,number2,operation);
-                    number2 = checkLength(number2);
+                    displayValue = checkLength(number2);
                     previousDisplayStr = `${number2} ${operation}`;
-                    displayValue = roundResult(number2);
+                    displayValue = roundResult(displayValue);
                     inputDiv.textContent = displayValue; 
                     number1 = null;
                     operation = null;
