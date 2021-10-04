@@ -8,28 +8,13 @@ const buttonContainer = document.querySelector('#buttonContainer');
 const clearButton = document.querySelector('#clear');
 const deleteButton = document.querySelector('#delete');
 const exponentButton = document.querySelector('#exponent');
-const mulitplyButton = document.querySelector('#multiply');
-const divideButton = document.querySelector('#divide');
-const addButton = document.querySelector('#add');
-const subtractButton = document.querySelector('#subtract');
-const equalsButton = document.querySelector('#equals');
-const decimalButton = document.querySelector('#decimal');
-const oneButton = document.querySelector('#one');
-const twoButton = document.querySelector('#two');
-const threeButton = document.querySelector('#three');
-const fourButton = document.querySelector('#four');
-const fiveButton = document.querySelector('#five');
-const sixButton = document.querySelector('#six');
-const sevenButton = document.querySelector('#seven');
-const eightButton = document.querySelector('#eight');
-const nineButton = document.querySelector('#nine');
-const zeroButton = document.querySelector('#zero');
 const inverseButton = document.querySelector('#inverse');
 const inputDisplay = document.querySelector('#input');
 const previousDisplay = document.querySelector('#previous');
+const buttons = document.getElementsByClassName('btn');
+
 //#endregion
 
-const buttons = document.getElementsByClassName('btn');
 for (i = 0; i < buttons.length; i++){
     buttons[i].addEventListener('click', storeValue);
 }
@@ -175,9 +160,18 @@ function operate(a,b,operator){ //gets the operated value
             return multiply(a,b);
         case '/':
             return divide(a,b);
-        case 'exponent':
+        case '^':
             return exponent(a,b);
     }
+}
+
+function checkLength(number){// makes sure it'll fit on screen
+    numLength = number.toString().length;
+    console.log(`numlength of ${number} is ${numLength}`);
+    if (numLength > 10){
+        return Number.parseFloat(number).toExponential(7);
+    }
+    return number;
 }
 
 function processOperator(operator){ //processes an operator pressed
@@ -187,7 +181,7 @@ function processOperator(operator){ //processes an operator pressed
             return;
         }
         //change operator to selected operator
-        else if (operator == '+' || operator == '*' || operator == '/' || operator == '-'){
+        else if (operator == '+' || operator == '*' || operator == '/' || operator == '-' || operator == '^'){
             previousDisplayStr = previousDisplayStr.slice(0,previousDisplayStr.length-1)
             operation = operator;
             previousDisplayStr += ` ${operation}`; 
@@ -234,6 +228,7 @@ function processOperator(operator){ //processes an operator pressed
                     previousDisplayStr += ` ${number1} =`;
                     previousDiv.textContent = previousDisplayStr;
                     number2 = operate(number1,number2,operation);
+                    number2 = checkLength(number2);
                     previousDisplayStr = `${number2} ${operation}`;
                     displayValue = roundResult(number2);
                     inputDiv.textContent = displayValue; 
