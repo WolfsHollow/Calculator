@@ -16,6 +16,7 @@
     background-color: green;    
     height: 800px;
     width: 50%;
+    min-width: 400px;
     border-radius: 20px;
 }
 
@@ -40,7 +41,7 @@
             word-wrap: break-word;
         }
         #previous {
-            background-color: blue;
+            background-color: lightsteelblue;
             text-align: right;
             font-size: 30px;
             height: 40%;
