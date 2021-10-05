@@ -31,7 +31,7 @@
 
     #display {
         display: flex;
-        background-image: url('img/circles-light.png');
+        background-image: url('circles-light.PNG');
         flex-wrap: wrap;
         flex-flow: column;
         height: 20%;
