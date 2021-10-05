@@ -18,7 +18,7 @@
         linear-gradient(
             rgba(39, 7, 82, 0.315),
             rgba(122, 18, 219, 0.3)),
-            url('img/skulls.png');
+            url('skulls.png');
     background-color: green;    
     border-style: solid;
     border-color: rgb(59, 57, 57, 0.1);
