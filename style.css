@@ -1,7 +1,7 @@
 #page {  
     display: flex;
     background: rgb(0, 0, 0);
-    background-image: url('/img/double-bubble-dark.png');
+    background-image: url('img/double-bubble-dark.png');
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@
         linear-gradient(
             rgba(39, 7, 82, 0.315),
             rgba(122, 18, 219, 0.3)),
-            url('/img/skulls.png');
+            url('img/skulls.png');
     background-color: green;    
     border-style: solid;
     border-color: rgb(59, 57, 57, 0.1);
@@ -31,7 +31,7 @@
 
     #display {
         display: flex;
-        background-image: url('/img/circles-light.png');
+        background-image: url('img/circles-light.png');
         flex-wrap: wrap;
         flex-flow: column;
         height: 20%;
@@ -84,7 +84,7 @@
                 linear-gradient(
                     rgba(146, 35, 250, 0.1),
                     rgba(146, 35, 250, 0.1)),
-                    url('/img/blackmamba.png');
+                    url('img/blackmamba.png');
             background-color: skyblue;
             height: 20%;
             min-width: 80px;
@@ -97,7 +97,7 @@
                 linear-gradient(
                     rgba(0, 0, 0, 0.3),
                     rgba(18, 2, 36, 0.3)),
-                    url('/img/blackmamba.png');
+                    url('img/blackmamba.png');
             transform: scale(1.1);
         }
 
